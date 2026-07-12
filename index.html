@@ -60,6 +60,14 @@ section{padding:72px 0;}
 .topbar a:hover{color:var(--gold);}
 .tb-left,.tb-right{display:flex;gap:18px;align-items:center;}
 
+@media(max-width:600px){
+  .topbar{padding:10px 0;}
+  .topbar .wrap{flex-direction:column;align-items:flex-start;gap:8px;}
+  .tb-left{flex-direction:column;align-items:flex-start;gap:6px;width:100%;}
+  .tb-left a{white-space:nowrap;font-size:.76rem;}
+  .tb-right{align-self:flex-end;gap:14px;}
+}
+
 /* ════════════════════════════════════════
    HEADER
 ═══════════════════════════════════════ */
@@ -406,6 +414,9 @@ nav a:hover{color:var(--red);}
 .modal-body .wa-btn:hover{background:#1ea855;}
 .modal-note{font-size:.72rem;color:var(--muted);text-align:center;margin-top:10px;display:flex;align-items:center;justify-content:center;gap:6px;}
 .modal-note svg{width:14px;height:14px;color:#25D366;}
+@media(max-width:480px){
+  .fg-row{grid-template-columns:1fr;gap:0;}
+}
 
 /* ════════════════════════════════════════
    FOOTER
@@ -1088,7 +1099,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
   <div class="modal" id="modalBox">
     <button class="modal-close" onclick="closeModal()" aria-label="Close">✕</button>
     <div class="modal-photo">
-      <img id="mPhoto" src="https://commons.wikimedia.org/wiki/Special:FilePath/Chandrabhaga%20Beach%20in%20Odisha%2001.jpg?width=800" alt="">
+      <img id="mPhoto" src="https://res.cloudinary.com/dmivtuufp/image/upload/v1783884305/heathrow-windsor-guest-house-slough-pic-55_vzfgaz.jpg" alt="">
       <div class="modal-photo-tag">
         <div class="price" id="mPrice">Select a Room</div>
         <h3 id="mName">Temple City Guest House — Book Your Stay</h3>
@@ -1205,12 +1216,12 @@ function openModal(name,price,photo){
   if(name){
     document.getElementById('mName').textContent=name;
     document.getElementById('mPrice').textContent=price||'';
-    document.getElementById('mPhoto').src=photo||'https://commons.wikimedia.org/wiki/Special:FilePath/Chandrabhaga%20Beach%20in%20Odisha%2001.jpg?width=800';
+    document.getElementById('mPhoto').src=photo||'https://res.cloudinary.com/dmivtuufp/image/upload/v1783884305/heathrow-windsor-guest-house-slough-pic-55_vzfgaz.jpg';
     document.getElementById('bRoom').value=name;
   } else {
     document.getElementById('mName').textContent='Temple City Guest House — Book Your Stay';
     document.getElementById('mPrice').textContent='';
-    document.getElementById('mPhoto').src='https://commons.wikimedia.org/wiki/Special:FilePath/Chandrabhaga%20Beach%20in%20Odisha%2001.jpg?width=800';
+    document.getElementById('mPhoto').src='https://res.cloudinary.com/dmivtuufp/image/upload/v1783884305/heathrow-windsor-guest-house-slough-pic-55_vzfgaz.jpg';
   }
   document.getElementById('modalBg').classList.add('on');
   document.body.style.overflow='hidden';
