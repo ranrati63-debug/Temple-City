@@ -110,6 +110,10 @@ nav a:hover{color:var(--red);}
 }
 @media(max-width:600px){
   header .logo-text{display:none;}
+  header .logo-icon{width:60px;height:60px;padding:6px;}
+}
+@media(max-width:900px){
+  .hdr-book-btn{display:none;}
 }
 
 /* ════════════════════════════════════════
@@ -204,11 +208,13 @@ nav a:hover{color:var(--red);}
 .rooms-nav button{width:36px;height:36px;border-radius:50%;border:1.5px solid rgba(0,0,0,.15);
   display:flex;align-items:center;justify-content:center;color:var(--ink);transition:.25s;}
 .rooms-nav button:hover{background:var(--red);border-color:var(--red);color:#fff;}
-.rooms-track-wrap{overflow:hidden;}
-.rooms-track{display:flex;gap:24px;transition:transform .5s ease;}
+.rooms-track-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;scroll-behavior:smooth;
+  scroll-snap-type:x proximity;scrollbar-width:none;-ms-overflow-style:none;}
+.rooms-track-wrap::-webkit-scrollbar{display:none;}
+.rooms-track{display:flex;gap:24px;}
 .room-card{background:#fff;border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow);
   min-width:calc(33.333% - 16px);flex-shrink:0;display:flex;flex-direction:column;
-  transition:transform .3s,box-shadow .3s;}
+  scroll-snap-align:start;transition:transform .3s,box-shadow .3s;}
 .room-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-md);}
 .room-thumb{height:200px;overflow:hidden;position:relative;}
 .room-thumb img{width:100%;height:100%;object-fit:cover;transition:transform .4s;}
@@ -531,7 +537,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
         </ul>
       </nav>
       <div style="display:flex;align-items:center;gap:12px;">
-        <button class="btn btn-red btn-sm" onclick="openModal()">BOOK YOUR STAY</button>
+        <button class="btn btn-red btn-sm hdr-book-btn" onclick="openModal()">BOOK YOUR STAY</button>
         <button class="nav-mobile" id="navBtn" aria-label="Menu"><span></span><span></span><span></span></button>
       </div>
     </div>
@@ -1165,22 +1171,17 @@ document.querySelectorAll('.mob-nav a').forEach(a=>a.addEventListener('click',()
 /* ── Scroll to rooms ── */
 function scrollToRooms(){document.getElementById('rooms').scrollIntoView({behavior:'smooth'});}
 
-/* ── Room slider ── */
-let rIdx=0;
-function getCardW(){
-  const t=document.getElementById('roomsTrack');
-  const c=t.querySelector('.room-card');
-  return c?c.getBoundingClientRect().width+24:0;
+/* ── Room slider (native scroll, touch-friendly) ── */
+function roomStep(){
+  const c=document.querySelector('#roomsTrack .room-card');
+  return c?c.getBoundingClientRect().width+24:320;
 }
-function getRooms(){return document.getElementById('roomsTrack').querySelectorAll('.room-card');}
-function setSlide(){
-  const max=getRooms().length-Math.max(1,Math.round(document.getElementById('roomsTrack').parentElement.offsetWidth/(getCardW()||1)));
-  rIdx=Math.max(0,Math.min(rIdx,max));
-  document.getElementById('roomsTrack').style.transform=`translateX(-${rIdx*getCardW()}px)`;
-}
-document.getElementById('nextRoom').addEventListener('click',()=>{rIdx++;setSlide();});
-document.getElementById('prevRoom').addEventListener('click',()=>{rIdx--;setSlide();});
-window.addEventListener('resize',()=>setSlide());
+document.getElementById('nextRoom').addEventListener('click',()=>{
+  document.querySelector('.rooms-track-wrap').scrollBy({left:roomStep(),behavior:'smooth'});
+});
+document.getElementById('prevRoom').addEventListener('click',()=>{
+  document.querySelector('.rooms-track-wrap').scrollBy({left:-roomStep(),behavior:'smooth'});
+});
 
 /* ── Modal ── */
 function openModal(name,price,photo){
