@@ -108,6 +108,9 @@ nav a:hover{color:var(--red);}
   nav.desk{display:none;}
   .nav-mobile{display:flex;}
 }
+@media(max-width:600px){
+  header .logo-text{display:none;}
+}
 
 /* ════════════════════════════════════════
    HERO
@@ -170,9 +173,17 @@ nav a:hover{color:var(--red);}
 .about-text h2{font-size:clamp(1.6rem,2.5vw,2.2rem);margin-bottom:18px;}
 .about-text p{color:var(--muted);font-size:.9rem;line-height:1.75;margin-bottom:14px;}
 .about-stats{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:28px 0;}
-.astat{background:var(--off);border-radius:8px;padding:18px 16px;border-left:3px solid var(--red);}
-.astat .num{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:800;color:var(--red);}
-.astat .lbl{font-size:.72rem;color:var(--muted);margin-top:2px;font-weight:500;}
+.astat{background:#fff;border-radius:14px;padding:24px 16px;text-align:center;
+  border:1px solid var(--border);box-shadow:0 6px 20px rgba(0,0,0,.05);
+  position:relative;overflow:hidden;transition:.3s;}
+.astat::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--red),var(--gold));}
+.astat:hover{transform:translateY(-4px);box-shadow:0 14px 30px rgba(0,0,0,.1);}
+.astat-ic{width:38px;height:38px;border-radius:50%;background:rgba(170,0,0,.08);
+  display:flex;align-items:center;justify-content:center;margin:0 auto 10px;}
+.astat-ic svg{width:18px;height:18px;color:var(--red);}
+.astat .num{font-family:'Playfair Display',serif;font-size:1.7rem;font-weight:800;color:var(--red);}
+.astat .lbl{font-size:.72rem;color:var(--muted);margin-top:4px;font-weight:500;}
 .about-photos{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto auto;gap:12px;}
 .about-photos .ap{border-radius:10px;overflow:hidden;position:relative;}
 .about-photos .ap img{width:100%;height:100%;object-fit:cover;}
@@ -620,10 +631,22 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
         <p>A gateway to the perfect blend of comfort and warm welcome at Temple City Guest House. We at Temple City Guest House take pleasure in making you feel at home even when you're miles away from it, in the divine atmosphere of the city of Odisha.</p>
         <p>Our luxury rooms are designed to deliver an unmatchable experience. We aim for excellence in every detail of our accommodation — from aesthetics to world-class amenities. Let us make your stay truly unforgettable.</p>
         <div class="about-stats">
-          <div class="astat"><div class="num" data-count="10">0</div><div class="lbl">+ Years Experience</div></div>
-          <div class="astat"><div class="num" data-count="30">0</div><div class="lbl">+ Luxury Rooms</div></div>
-          <div class="astat"><div class="num" data-count="9">0</div><div class="lbl">K Happy Guests</div></div>
-          <div class="astat"><div class="num" data-count="4.5" data-dec="1">0</div><div class="lbl">★ Average Rating</div></div>
+          <div class="astat">
+            <div class="astat-ic"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+            <div class="num" data-count="10">0</div><div class="lbl">+ Years of Hospitality</div>
+          </div>
+          <div class="astat">
+            <div class="astat-ic"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6"/></svg></div>
+            <div class="num" data-count="30">0</div><div class="lbl">+ Luxury Rooms</div>
+          </div>
+          <div class="astat">
+            <div class="astat-ic"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+            <div class="num" data-count="9">0</div><div class="lbl">K Happy Guests</div>
+          </div>
+          <div class="astat">
+            <div class="astat-ic"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 22 12 18 5.5 22 7 14.5 2 9.5 9 9"/></svg></div>
+            <div class="num" data-count="4.5" data-dec="1">0</div><div class="lbl">★ Average Rating</div>
+          </div>
         </div>
         <a href="#about" class="btn btn-red">About Us</a>
       </div>
@@ -787,8 +810,8 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
         <div class="test-stars">★★★★★</div>
         <p class="test-text">"Good experience, lovely rooms and genuinely warm hospitality. The staff remembered our names by day two — small thing, but it mattered a lot."</p>
         <div class="test-person">
-          <div class="test-av">DG</div>
-          <div><h5>Devanshi Golait</h5><span>Delhi</span></div>
+          <div class="test-av">DN</div>
+          <div><h5>Debasish Nayak</h5><span>Bhubaneswar</span></div>
         </div>
       </div>
       <div class="test-card sr">
@@ -796,8 +819,8 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
         <div class="test-stars">★★★★★</div>
         <p class="test-text">"Clean, well-kept room with everything you'd expect. Just a short walk from the beach, and the staff support was excellent throughout our stay."</p>
         <div class="test-person">
-          <div class="test-av">KS</div>
-          <div><h5>Kashyap Shyam</h5><span>Hyderabad</span></div>
+          <div class="test-av">IM</div>
+          <div><h5>Ipsita Mohanty</h5><span>Cuttack</span></div>
         </div>
       </div>
       <div class="test-card sr">
@@ -806,60 +829,8 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
         <p class="test-text">"High quality hospitality from staff to management — one of the best stays in Odisha. We'll be back for Rath Yatra next year without a doubt."</p>
         <div class="test-person">
           <div class="test-av">SR</div>
-          <div><h5>Soumya Ranjan</h5><span>Jaipur</span></div>
+          <div><h5>Soumya Ranjan</h5><span>Puri</span></div>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════ FEATURE MOSAIC ══════ -->
-<section class="features-section" id="features">
-  <div class="feat-head sr">
-    <div class="wrap">
-      <span class="eyebrow">Explore Around</span>
-      <h2>Here's What We Offer</h2>
-    </div>
-  </div>
-  <div class="feat-mosaic">
-    <div class="feat-tile wide">
-      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/BirdsEyeViewOf%20JagannathTemplePuri.jpg?width=1000" alt="Lingaraj Temple aerial" loading="lazy">
-      <div class="overlay"></div>
-      <div class="label">
-        <span class="eye">Temple Surroundings</span>
-        <h3>Shree Lingaraj Temple</h3>
-        <p>One of the oldest and grandest temples in Bhubaneswar, just 1.5 km from Temple City Guest House.</p>
-        <a href="#contact" class="learn-btn">Explore Now</a>
-      </div>
-    </div>
-    <div class="feat-tile tall">
-      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Singhadwara.jpg?width=800" alt="Temple entrance" loading="lazy">
-      <div class="overlay"></div>
-      <div class="label">
-        <span class="eye">Natural Surroundings</span>
-        <h3>Embrace the Beauty of Nature</h3>
-        <p>Bhubaneswar — the Temple City — is ringed by lakes, gardens, and centuries-old shrines.</p>
-        <a href="#contact" class="learn-btn">Explore Now</a>
-      </div>
-    </div>
-    <div class="feat-tile">
-      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Chandrabhaga%20Beach%20in%20Odisha%2001.jpg?width=800" alt="Odisha beach" loading="lazy">
-      <div class="overlay"></div>
-      <div class="label">
-        <span class="eye">Sacred Shrine</span>
-        <h3>Mahaprasad of Lord Lingaraj</h3>
-        <p>Experience the divine mahaprasad — a unique culinary and spiritual tradition.</p>
-        <a href="#contact" class="learn-btn">Read More</a>
-      </div>
-    </div>
-    <div class="feat-tile">
-      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Beach%20of%20Konark%2001.jpg?width=800" alt="Konark beach" loading="lazy">
-      <div class="overlay"></div>
-      <div class="label">
-        <span class="eye">Tailored Experiences</span>
-        <h3>Tailored Experiences for Every Guest</h3>
-        <p>Honeymoon packages, family packages &amp; business stays — we do it all.</p>
-        <a href="#rooms" class="learn-btn">Book Now</a>
       </div>
     </div>
   </div>
